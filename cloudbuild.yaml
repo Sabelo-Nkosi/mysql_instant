@@ -12,7 +12,7 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'db-mysql"
+      - 'db-mysql'
       - '--image'
       - 'gcr.io/scoreboard-poc/my-sql-instantiation-mysql-1-$BRANCH_NAME:$COMMIT_SHA'
       - '--region'
