@@ -2,9 +2,18 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'compose'
-      - 'up'
-      - 'stop'
+      - 'create'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'gcr.io/scoreboard-poc/mysql-$BRANCH_NAME:$COMMIT_SHA'
+      - 'gcr.io/scoreboard-poc/my-sql-instantiation-mysql-1-$BRANCH_NAME:$COMMIT_SHA'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'srv-score'
+      - '--image'
+      - 'gcr.io/scoreboard-poc/my-sql-instantiation-mysql-1-$BRANCH_NAME:$COMMIT_SHA'
+      - '--region'
+      - 'europe-west1'
