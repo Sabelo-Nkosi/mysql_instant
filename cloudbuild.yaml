@@ -5,6 +5,11 @@ steps:
       - 'create'
   - name: 'gcr.io/cloud-builders/docker'
     args:
+      - 'tag'
+      - 'workspace-mysql-1'
+      - 'gcr.io/scoreboard-poc/my-sql-instantiation-mysql-1-$BRANCH_NAME:$COMMIT_SHA'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
       - 'push'
       - 'gcr.io/scoreboard-poc/my-sql-instantiation-mysql-1-$BRANCH_NAME:$COMMIT_SHA'
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
