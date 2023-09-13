@@ -3,3 +3,7 @@ steps:
     args:
       - 'compose'
       - 'up'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/scoreboard-poc/mysql-$BRANCH_NAME:$COMMIT_SHA'
