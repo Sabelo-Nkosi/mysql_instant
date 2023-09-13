@@ -3,6 +3,7 @@ steps:
     args:
       - 'compose'
       - 'up'
+      - 'stop'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
