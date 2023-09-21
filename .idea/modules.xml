@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/my-sql-instantiation.iml" filepath="$PROJECT_DIR$/my-sql-instantiation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/progress-local.iml" filepath="$PROJECT_DIR$/progress-local.iml" />
     </modules>
   </component>
 </project>

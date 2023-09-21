@@ -1,13 +1,29 @@
-version: '3.3'
+version: '3.8'
+
 services:
-  ### MySQL Container
-  mysql:
-    build:
-      context: .
-      args:
-        - MYSQL_DATABASE=${MYSQL_DATABASE}
-        - MYSQL_USER=${MYSQL_USER}
-        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres_db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command:
+      - "-p ${POSTGRES_PORT}"
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "${POSTGRES_LOCAL_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+# to get host name for postgres running in container :
+# run [docker ps]
+# grab "container id" for postgres db
+# run [docker inspect <conatainer_id>] then grab the ipadress , that will be the host
