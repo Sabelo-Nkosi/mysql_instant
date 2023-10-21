@@ -4,7 +4,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials YOUR_CLUSTER_NAME --region YOUR_REGION
+        gcloud container clusters get-credentials poc-digilink-managed-dev --region europe-west1
         kubectl create secret generic postgres-credentials --from-literal=POSTGRES_PASSWORD=passwd
         kubectl apply -f k8s/db-postgres-deployment.yml
 
