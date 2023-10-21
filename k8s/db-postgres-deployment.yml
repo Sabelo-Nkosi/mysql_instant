@@ -1,12 +1,12 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dev-postgres
+  name: dev-postgres-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dev-postgres
+      app: dev-postgres-deployment
     template:
       metadata:
         containers:
@@ -27,9 +27,9 @@ spec:
             - mountPath: /var/lib/postgresql/data
               name: postgres-pv-storage
         labels:
-          app: dev-postgres
+          app: dev-postgres-deployment
           spec: null
         volumes:
-          name: dev-postgres-storage
+          name: dev-postgres-deployment-storage
           persistentVolumeClaim:
-            claimName: dev-postgres-claim
+            claimName: dev-postgres-deployment-claim

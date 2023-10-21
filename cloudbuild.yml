@@ -1,0 +1,22 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud container clusters get-credentials YOUR_CLUSTER_NAME --region YOUR_REGION
+        kubectl create secret generic postgres-credentials --from-literal=POSTGRES_PASSWORD=passwd
+        kubectl apply -f k8s/db-postgres-deployment.yml
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'wait'
+      - '--for=condition=available'
+      - 'deployment/postgres'
+      - '--timeout=600s'
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'port-forward'
+      - 'deployment/postgres'
+      - '5432:5432'
