@@ -16,15 +16,15 @@ services:
       - ./.env:/var/lib/postgresql/.env
       - ./postgres-data:/var/lib/postgresql/data
       - ./db/struct.sql:/docker-entrypoint-initdb.d/struct.sql
-  pgadmin:
-    container_name: pgadmin4_container
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    ports:
-      - "5050:80"
+#  pgadmin:
+#    container_name: pgadmin4_container
+#    image: dpage/pgadmin4
+#    restart: always
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#      PGADMIN_DEFAULT_PASSWORD: root
+#    ports:
+#      - "5050:80"
 # to get host name for postgres running in container :
 # run [docker ps]
 # grab "container id" for postgres db
