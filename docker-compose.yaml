@@ -13,6 +13,7 @@ services:
     ports:
       - "${POSTGRES_LOCAL_PORT}:${POSTGRES_PORT}"
     volumes:
+      - ./.env:/var/lib/postgresql/.env
       - ./postgres-data:/var/lib/postgresql/data
       - ./db/struct.sql:/docker-entrypoint-initdb.d/struct.sql
   pgadmin:
